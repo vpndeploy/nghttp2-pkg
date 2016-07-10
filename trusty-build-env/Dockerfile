@@ -9,4 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && gem install fpm \
     && mkdir -p /build
 
-WORKDIR /build
+ENV BUILD_DIR /build
+WORKDIR ${BUILD_DIR}
+ADD make-deb.sh /build/make-deb.sh
+ENTRYPOINT ["/build/make-deb.sh"]
